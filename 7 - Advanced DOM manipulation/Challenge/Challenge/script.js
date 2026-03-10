@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        
+       
         // Task: Validate each field here
         // - Check if the name, email, and password are not empty.
         // - Validate the email format.
@@ -19,6 +19,28 @@ document.addEventListener('DOMContentLoaded', () => {
         //     formFeedback.textContent = 'Name cannot be empty';
         //     // Add more validation checks
         // }
+
+        if(nameInput.value.trim === ""){
+            formFeedback.textContent = 'Name cannot be empty';
+            formFeedback.style.color = 'red';
+            return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(emailInput.value.trim())) {
+            formFeedback.textContent = 'Email format invalid';
+            formFeedback.style.color = 'red';
+            return;
+        }
+
+        if (passwordInput.value.length < 5 ){
+            formFeedback.textContent = 'Password must be at least 5 chars long';
+            formFeedback.style.color = 'red';
+            return;
+        }
+
+        formFeedback.textContent = "Successfully Registered!";
+        formFeedback.style.color = "green";
 
     });
 });
